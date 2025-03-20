@@ -8,7 +8,7 @@
 
 4. Add  all   project files to the cloned repository folder
 
-5. Commit and Push
+5. Commit and Push to the main
 
 
 following the instruction ,do it step by step
