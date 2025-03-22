@@ -12,4 +12,5 @@
 rename the Korean files to English. Let me use the terminal to rename these files safely. 
 command 例如:"Rename-Item '제휴_마케팅_블로그_기사_작성.md' 'Affiliate_Marketing_Blog_Article_Writing.md'"
 
-搜尋專案目錄 prompt-gallery 中的所有子目錄，找到所有 .md (Markdown) 檔案，並將其中的韓文內容翻譯為繁體中文，最後將翻譯後的內容儲存回原檔案。請確保保留 Markdown 格式，並且只翻譯韓文部分，不影響其他內容。 第一步先處理 "Blog-Article_Creation"目錄
+搜尋專案目錄 prompt-gallery 中的所有子目錄，找到所有 .md (Markdown) 檔案，並將其中的韓文內容翻譯為繁體中文，最後將翻譯後的內容儲存回原檔案。請確保保留 Markdown 格式，並且只翻譯韓文部分，不影響其他內容。如果檔案名稱有韓文 ,將其重新命名為英文名稱。
+ ignore the folder  "Blog-Article_Creation"目錄
