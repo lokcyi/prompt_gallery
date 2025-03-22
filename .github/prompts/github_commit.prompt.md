@@ -12,3 +12,6 @@
 
 
 following the instruction ,do it step by step
+
+
+check branch is up to date with 'origin/master'. then add and Commit and Push to the main

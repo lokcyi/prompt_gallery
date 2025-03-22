@@ -1,5 +1,15 @@
 `following the instruction ,do it step by step
-1. 搜尋 專案目錄prompt-gallery中的所有子目錄 將韓文目錄名稱變更為英文名稱 
-1. 搜尋 專案目錄prompt-gallery中的子目錄SEO， 將所有 md 中的韓文 翻譯成中文並儲存
-2. 搜尋 專案目錄prompt-gallery中的子目錄SEO， 將所有 *.md 的 檔名中的韓文翻譯成英文黨名 並儲存
 
+1. 搜尋 專案目錄prompt-gallery/Blog-Article Creation/ md檔案， 如果檔名有韓文 你要將檔名改成英文檔名 並儲存
+1. 搜尋 專案目錄prompt-gallery中的所有子目錄的檔案， 將所有 md 中的韓文 翻譯成中文並儲存
+
+
+1. 搜尋 專案目錄prompt-gallery中的所有子目錄 將韓文目錄名稱變更為英文名稱 
+
+
+將搜尋指定prompt-gallery資料夾內的子檔案，識別出包含韓文的檔案名稱，並將其重新命名為英文名稱。將韓文翻譯成英文。例如：한글파일.md 可能會被改為 HangulFile.md。"
+
+rename the Korean files to English. Let me use the terminal to rename these files safely. 
+command 例如:"Rename-Item '제휴_마케팅_블로그_기사_작성.md' 'Affiliate_Marketing_Blog_Article_Writing.md'"
+
+搜尋專案目錄 prompt-gallery 中的所有子目錄，找到所有 .md (Markdown) 檔案，並將其中的韓文內容翻譯為繁體中文，最後將翻譯後的內容儲存回原檔案。請確保保留 Markdown 格式，並且只翻譯韓文部分，不影響其他內容。 第一步先處理 "Blog-Article_Creation"目錄
