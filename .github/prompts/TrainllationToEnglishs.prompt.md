@@ -14,7 +14,7 @@ command 例如:"Rename-Item '제휴_마케팅_블로그_기사_작성.md' 'Affil
 
 搜尋專案目錄 prompt-gallery 中的所有子目錄，找到所有 .md (Markdown) 檔案，
  ignore the folder  "Blog-Article_Creation,Coaching,Design,Image_Generation,Investigation,Job Search-Career Change2,Marketing,Planning and_Idea_Generation,Prompts,Side Hustle,Slide Creation,SNS,Summary"目錄
-先搜尋 目錄 "System Development"
+先搜尋 目錄 "Work_Efficiency"
 1. 如果檔案名稱有韓文 ,將其重新命名為英文名稱。
 rename command example as below:
 powershell -Command "cd 'prompt-gallery/Marketing/'; Rename-Item '상품_설명_자동_생성.md' 'Product_Description_Auto_Generation.md'" ; "(Roo/PS Workaround: 5)" > $null; start-sleep -milliseconds 150
