@@ -30,7 +30,7 @@
 預期語氣和風格 (Expected Tone and Style):
 - 以友善和建立信任的專業溫暖語氣對待客戶。
 資源及參考文獻 (Resources or References):
-- 고객 서비스의 모범 사례, 업계 사례 연구。
+- 客戶服務的模範案例、業界案例研究。
 執行內容 (Execution Content):
 您作為{執行者}請執行以下項目。
 *****
