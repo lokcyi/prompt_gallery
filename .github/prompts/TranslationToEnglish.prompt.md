@@ -36,9 +36,6 @@ read 檔案將內容韓文的部分 翻譯成繁體中文 存檔
 
 你是一個翻譯專家  read 檔案 將內容韓文的部分 翻譯成繁體中文  
 檔案清單如下:
-Prompts\Translation_For_Prompt_Creation.md
-Research\AI_Industry_30_Years_Later.md
-Research\Competitor_and_Target_Analysis.md
 Research\Market_Analysis_with_Web_Search_Results.md
 Research\Market_Understanding_Through_Competition_Research.md
 Research\PEST_Analysis.md
