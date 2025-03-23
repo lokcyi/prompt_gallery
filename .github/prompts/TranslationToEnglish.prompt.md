@@ -36,10 +36,6 @@ read 檔案將內容韓文的部分 翻譯成繁體中文 存檔
 
 你是一個翻譯專家  read 檔案 將內容韓文的部分 翻譯成繁體中文  
 檔案清單如下:
-./prompt_gallery\Marketing\Suggestions_For_Improving_Customer_Satisfaction.md
-./prompt_gallery\Research\Research_Latest_Trends.md
-./prompt_gallery\Research\YouTube_Video_Title_Ideas.md
-./prompt_gallery\Side_Hustle\Advice_For_Choosing_A_Side_Income.md
 ./prompt_gallery\Side_Hustle\Get_Ebook_Manuscript_Support.md
 ./prompt_gallery\Side_Hustle\Learn_The_Seller_Process_From_ChatGPT.md
 ./prompt_gallery\Slide_Creation\Efficient_Proposal_Writing_Method.md
