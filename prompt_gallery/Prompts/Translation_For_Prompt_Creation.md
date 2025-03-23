@@ -71,7 +71,7 @@
 - ChatGPT builds plans based on scientific evidence.
 - ChatGPT builds plans based on the foundation of psychology.`
 
-### 輸出日語。
+### 輸出韓文。
 `Markdown
 - ChatGPT는 논리적이고 계획적입니다.
 - ChatGPT는 과학과 심리학에 정통합니다.

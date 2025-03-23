@@ -1,0 +1,19 @@
+Rename-Item : 無法重新命名，因為位於 '???_???_??_??_????.md' 的項目不存在。
+位於 線路:1 字元:37
++ ... _Writing/'; Rename-Item '???_???_??_??_????.md' 'Generate_Ad_Copy_for 
+...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Rename-Item]，PSInvalidOperationExcep
+    tion
+    + FullyQualifiedErrorId : InvalidOperation,Microsoft.PowerShell.Commands.RenameItemCo 
+   mmand
+ 
+Roo/PS : 無法辨識 'Roo/PS' 詞彙是否為 Cmdlet、函數、指令檔或可執行程式的名稱。請檢查名稱拼
+字是否正確，如果包含路徑的話，請確認路徑是否正確，然後再試一次。
+位於 線路:1 字元:114
++ ... ?_??_????.md' 'Generate_Ad_Copy_for_Listing_Ads.md' ; (Roo/PS Workaro ...
++                                                            ~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Roo/PS:String) [], CommandNotFoundExceptio 
+   n
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
