@@ -38,16 +38,19 @@ function handleCategoryClick(category: PromptCategory) {
 .category-item {
   border-radius: 8px;
   overflow: hidden;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
+  background-color: #ffe4e1; /* Light pink */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .category-item:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .category-card {
-  background-color: #fff;
+  background-color: #fff0f5; /* Lavender blush */
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -55,6 +58,7 @@ function handleCategoryClick(category: PromptCategory) {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }
 
 h3 {
