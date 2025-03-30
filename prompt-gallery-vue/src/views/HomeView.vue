@@ -4,9 +4,10 @@ import { usePromptStore } from '../stores/promptStore';
 import CategoryList from '../components/CategoryList.vue';
 import SearchBar from '../components/SearchBar.vue';
 import HexToChineseConverter from '../components/HexToChineseConverter.vue';
+import WebpageView from '../components/WebpageView.vue';
 
 const store = usePromptStore();
-const currentFeature = ref('categories'); // 'categories' or 'converter'
+const currentFeature = ref('categories'); // 'categories', 'converter', or 'webpage'
 
 const switchFeature = (feature: string) => {
   currentFeature.value = feature;
@@ -39,6 +40,12 @@ onMounted(async () => {
         >
           Hex to Chinese
         </button>
+        <button 
+          :class="{ active: currentFeature === 'webpage' }"
+          @click="switchFeature('webpage')"
+        >
+          AI News
+        </button>
       </div>
 
       <div v-if="store.isLoading" class="loading">
@@ -46,6 +53,7 @@ onMounted(async () => {
       </div>
       <div v-else>
         <HexToChineseConverter v-if="currentFeature === 'converter'" class="converter-section" />
+        <WebpageView v-else-if="currentFeature === 'webpage'" />
         <template v-else>
           <h2 class="categories-heading">Categories</h2>
           <CategoryList :categories="store.categories" />
