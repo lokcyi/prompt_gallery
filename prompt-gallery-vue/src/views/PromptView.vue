@@ -162,6 +162,15 @@ h1 {
   margin-bottom: 0.8rem;
 }
 
+:deep(.markdown-content h3) {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  margin-bottom: 0.8rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
 :deep(.markdown-content code) {
   background-color: #f1f1f1;
   padding: 2px 4px;

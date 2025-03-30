@@ -112,4 +112,14 @@ h1 {
   padding: 2rem;
   color: #666;
 }
+
+h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
 </style>

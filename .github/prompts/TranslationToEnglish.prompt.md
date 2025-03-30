@@ -36,9 +36,6 @@ read 檔案將內容韓文的部分 翻譯成繁體中文 存檔
 
 你是一個翻譯專家  read 檔案 將內容韓文的部分 翻譯成繁體中文  
 檔案清單如下:
-./prompt_gallery\Slide_Creation\Efficient_Proposal_Writing_Method.md
-./prompt_gallery\Slide_Creation\Presentation_Outline_Review.md
-./prompt_gallery\Slide_Creation\Prompt_To_Streamline_Slide_Creation.md
 ./prompt_gallery\Task_Management\Recommended_Business_Tools_for_Companies.md
 ./prompt_gallery\Task_Management\Task_List_Up.md
 

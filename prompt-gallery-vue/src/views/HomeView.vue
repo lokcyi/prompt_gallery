@@ -3,6 +3,7 @@ import { onMounted } from 'vue';
 import { usePromptStore } from '../stores/promptStore';
 import CategoryList from '../components/CategoryList.vue';
 import SearchBar from '../components/SearchBar.vue';
+import HexToChineseConverter from '../components/HexToChineseConverter.vue';
 
 const store = usePromptStore();
 
@@ -24,7 +25,8 @@ onMounted(async () => {
         Loading...
       </div>
       <div v-else>
-        <h2>Categories</h2>
+        <HexToChineseConverter class="converter-section" />
+        <h2 class="categories-heading">Categories</h2>
         <CategoryList :categories="store.categories" />
       </div>
     </main>
@@ -59,5 +61,15 @@ h1 {
   padding: 2rem;
   font-size: 1.2rem;
   color: #666;
+}
+
+.converter-section {
+  margin-bottom: 40px;
+}
+
+.categories-heading {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
 }
 </style>
