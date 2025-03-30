@@ -40,6 +40,7 @@ onMounted(async () => {
           active-class="active"
         >
           Favorites
+          <span v-if="store.favorites.size" class="badge">{{ store.favorites.size }}</span>
         </router-link>
         <button 
           :class="{ active: currentFeature === 'converter' }"
@@ -146,5 +147,17 @@ h1 {
   background-color: #4CAF50;
   color: white;
   border-color: #4CAF50;
+}
+
+.badge {
+  background-color: #ff4d4d;
+  color: white;
+  border-radius: 12px;
+  padding: 2px 8px;
+  margin-left: 8px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1;
 }
 </style>
