@@ -1,17 +1,27 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 import { usePromptStore } from '../stores/promptStore';
 import CategoryList from '../components/CategoryList.vue';
 import SearchBar from '../components/SearchBar.vue';
 import HexToChineseConverter from '../components/HexToChineseConverter.vue';
 import WebpageView from '../components/WebpageView.vue';
+import { useRouter } from 'vue-router';
 
 const store = usePromptStore();
+const router = useRouter();
 const currentFeature = ref('categories'); // 'categories', 'converter', or 'webpage'
 
 const switchFeature = (feature: string) => {
-  currentFeature.value = feature;
+  if (feature === 'favorites') {
+    router.push('/favorites');
+  } else {
+    currentFeature.value = feature;
+  }
 };
+
+const favoriteCount = computed(() => {
+  return store.prompts.filter(prompt => store.isFavorite(prompt.path)).length;
+});
 
 onMounted(async () => {
   await store.loadDirectoryStructure();
@@ -34,13 +44,6 @@ onMounted(async () => {
         >
           Categories
         </button>
-        <router-link 
-          to="/favorites"
-          class="feature-button"
-          active-class="active"
-        >
-          Favorites
-        </router-link>
         <button 
           :class="{ active: currentFeature === 'converter' }"
           @click="switchFeature('converter')"
@@ -52,6 +55,13 @@ onMounted(async () => {
           @click="switchFeature('webpage')"
         >
           AI News
+        </button>
+        <button 
+          @click="switchFeature('favorites')"
+          class="favorite-button"
+        >
+          <span>Favorites</span>
+          <span v-if="favoriteCount" class="favorite-count">{{ favoriteCount }}</span>
         </button>
       </div>
 
@@ -88,63 +98,70 @@ header {
 
 h1 {
   font-size: 2.5rem;
+  margin: 0;
   color: #333;
-}
-
-.loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-  font-size: 1.2rem;
-  color: #666;
-}
-
-.converter-section {
-  margin-bottom: 40px;
-}
-
-.categories-heading {
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 20px;
 }
 
 .feature-switcher {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
-  padding: 10px 0;
-  border-bottom: 1px solid #eaeaea;
 }
 
 .feature-switcher button {
   padding: 8px 16px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background-color: white;
+  border: none;
+  border-radius: 20px;
+  background-color: #f0f0f0;
+  color: #666;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
 }
 
-.feature-button {
-  padding: 8px 16px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background-color: white;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  color: inherit;
+.feature-switcher button:hover {
+  background-color: #e0e0e0;
+  color: #333;
 }
 
-.feature-button:hover {
-  background-color: #f5f5f5;
-}
-
-.feature-button.active {
-  background-color: #4CAF50;
+.feature-switcher button.active {
+  background-color: #333;
   color: white;
-  border-color: #4CAF50;
+}
+
+.favorite-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.favorite-count {
+  background-color: #ff4d4d;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+}
+
+.categories-heading {
+  font-size: 1.8rem;
+  margin: 20px 0;
+  color: #333;
+}
+
+.loading {
+  text-align: center;
+  margin-top: 40px;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+  }
+  
+  .feature-switcher {
+    flex-wrap: wrap;
+  }
 }
 </style>

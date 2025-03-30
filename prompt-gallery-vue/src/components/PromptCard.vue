@@ -1,9 +1,16 @@
 <script setup lang="ts">
-import { Prompt } from '../stores/promptStore';
+import { Prompt, usePromptStore } from '../stores/promptStore';
 
-defineProps<{
+const props = defineProps<{
   prompt: Prompt
 }>();
+
+const store = usePromptStore();
+
+function toggleFavorite(event: Event) {
+  event.preventDefault(); // Prevent card click from triggering
+  store.toggleFavorite(props.prompt.path);
+}
 </script>
 
 <template>
@@ -12,7 +19,16 @@ defineProps<{
     class="prompt-link"
   >
     <div class="prompt-card">
-      <h3>{{ prompt.title }}</h3>
+      <div class="prompt-header">
+        <h3>{{ prompt.title }}</h3>
+        <button 
+          class="favorite-btn" 
+          :class="{ active: store.isFavorite(prompt.path) }"
+          @click="toggleFavorite"
+        >
+          ♥
+        </button>
+      </div>
       <p class="description">{{ prompt.description }}</p>
       <div class="meta">
         <span class="category">{{ prompt.category }}</span>
@@ -44,10 +60,39 @@ defineProps<{
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
+.prompt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
 h3 {
   font-size: 1.2rem;
-  margin: 0 0 10px;
+  margin: 0;
   color: #333;
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.favorite-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #ddd;
+  padding: 0 5px;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.favorite-btn:hover {
+  transform: scale(1.1);
+  color: #ff6b6b;
+}
+
+.favorite-btn.active {
+  color: #ff6b6b;
 }
 
 .description {

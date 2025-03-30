@@ -2,7 +2,6 @@ import { defineStore } from 'pinia';
 import axios from 'axios';
 import { ref, computed } from 'vue';
 
-// Use the Vite proxy instead of hardcoding the URL
 const API_URL = '/api';
 
 export interface PromptCategory {
@@ -27,6 +26,15 @@ export const usePromptStore = defineStore('prompt', () => {
   const selectedCategory = ref('');
   const selectedPrompt = ref<Prompt | null>(null);
   const isLoading = ref(false);
+  const favorites = ref<Set<string>>(new Set());
+
+  // Load favorites from localStorage on store initialization
+  if (typeof window !== 'undefined') {
+    const savedFavorites = localStorage.getItem('promptFavorites');
+    if (savedFavorites) {
+      favorites.value = new Set(JSON.parse(savedFavorites));
+    }
+  }
   
   const filteredPrompts = computed(() => {
     if (!searchQuery.value) {
@@ -42,6 +50,21 @@ export const usePromptStore = defineStore('prompt', () => {
       prompt.code.toLowerCase().includes(query)
     );
   });
+
+  // Add methods for managing favorites
+  function toggleFavorite(promptPath: string) {
+    if (favorites.value.has(promptPath)) {
+      favorites.value.delete(promptPath);
+    } else {
+      favorites.value.add(promptPath);
+    }
+    // Save to localStorage
+    localStorage.setItem('promptFavorites', JSON.stringify([...favorites.value]));
+  }
+
+  function isFavorite(promptPath: string): boolean {
+    return favorites.value.has(promptPath);
+  }
 
   async function loadDirectoryStructure() {
     try {
@@ -96,6 +119,9 @@ export const usePromptStore = defineStore('prompt', () => {
     selectedCategory,
     selectedPrompt,
     isLoading,
+    favorites,
+    toggleFavorite,
+    isFavorite,
     loadDirectoryStructure,
     loadPrompts,
     loadPromptContent,
