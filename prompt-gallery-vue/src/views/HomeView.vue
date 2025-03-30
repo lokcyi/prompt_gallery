@@ -57,7 +57,7 @@ onMounted(async () => {
 
 <style scoped>
 .container {
-  max-width: 1200px;
+  width: 65vw;
   margin: 0 auto;
   padding: 20px;
 }
