@@ -4,6 +4,8 @@ import { useRoute, useRouter } from 'vue-router';
 import { usePromptStore } from '../stores/promptStore';
 import { marked } from 'marked';
 import SearchBar from '../components/SearchBar.vue';
+import type { Tokens, Renderer } from 'marked';
+type Code = Tokens.Code;
 
 const props = defineProps<{
   path?: string
@@ -14,10 +16,41 @@ const router = useRouter();
 const store = usePromptStore();
 const htmlContent = ref('');
 
+// Function to copy text to clipboard
+const copyToClipboard = async (text: string) => {
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch (err) {
+    console.error('Failed to copy text:', err);
+  }
+};
+
 const loadPrompt = async (path: string) => {
   await store.loadPromptContent(decodeURIComponent(path));
   if (store.selectedPrompt) {
-    htmlContent.value = marked.parse(store.selectedPrompt.code);
+    const renderer = new marked.Renderer();
+    const originalCodeRenderer = renderer.code;
+    
+    renderer.code = function(this: Renderer, code: Code) {
+      if (code.lang === 'plaintext') {
+        return `
+          <div class="code-block-wrapper">
+            <button class="copy-button" onclick="(() => {
+              const text = this.parentElement.querySelector('pre').textContent;
+              navigator.clipboard.writeText(text).catch(console.error);
+              this.textContent = 'Copied!';
+              setTimeout(() => this.textContent = 'Copy', 2000);
+            })()">Copy</button>
+            ${originalCodeRenderer.call(this, code)}
+          </div>
+        `;
+      }
+      return originalCodeRenderer.call(this, code);
+    };
+
+    marked.setOptions({ renderer });
+    const parsed = await Promise.resolve(marked.parse(store.selectedPrompt.code));
+    htmlContent.value = parsed;
   }
 };
 
@@ -149,7 +182,7 @@ h1 {
   font-size: 0.9rem;
 }
 
-/* To style the markdown content properly */
+/* Markdown content styling */
 :deep(.markdown-content h1) {
   font-size: 1.8rem;
   margin-top: 1.5rem;
@@ -166,9 +199,6 @@ h1 {
   font-size: 1.2rem;
   margin-top: 1rem;
   margin-bottom: 0.8rem;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  max-width: 100%;
 }
 
 :deep(.markdown-content code) {
@@ -183,5 +213,30 @@ h1 {
   padding: 15px;
   border-radius: 4px;
   overflow-x: auto;
+  margin: 0;
+}
+
+:deep(.code-block-wrapper) {
+  position: relative;
+  margin: 1em 0;
+}
+
+:deep(.copy-button) {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 4px 8px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  opacity: 0.8;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+:deep(.copy-button:hover) {
+  opacity: 1;
+  background-color: #f0f0f0;
 }
 </style>
