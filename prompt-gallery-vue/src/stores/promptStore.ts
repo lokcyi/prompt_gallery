@@ -66,6 +66,11 @@ export const usePromptStore = defineStore('prompt', () => {
     return favorites.value.has(promptPath);
   }
 
+  function clearAllFavorites() {
+    favorites.value.clear();
+    localStorage.setItem('promptFavorites', JSON.stringify([]));
+  }
+
   async function loadDirectoryStructure() {
     try {
       isLoading.value = true;
@@ -122,6 +127,7 @@ export const usePromptStore = defineStore('prompt', () => {
     favorites,
     toggleFavorite,
     isFavorite,
+    clearAllFavorites,
     loadDirectoryStructure,
     loadPrompts,
     loadPromptContent,

@@ -11,6 +11,12 @@ const favoritePrompts = computed(() =>
   store.prompts.filter(prompt => store.isFavorite(prompt.path))
 );
 
+const clearAllFavorites = () => {
+  if (confirm('Are you sure you want to remove all favorites?')) {
+    store.clearAllFavorites();
+  }
+};
+
 onMounted(async () => {
   if (!store.prompts.length) {
     await store.loadPrompts();
@@ -23,9 +29,14 @@ onMounted(async () => {
     <header>
       <div class="header-content">
         <h1>Favorites</h1>
-        <router-link to="/" class="back-link">« Back to Categories</router-link>
+        <router-link to="/" class="back-link">« Back to Prompt Gallery</router-link>
       </div>
-      <SearchBar />
+      <div class="header-actions">
+        <button v-if="favoritePrompts.length" @click="clearAllFavorites" class="clear-favorites-btn">
+          Clear All Favorites
+        </button>
+        <SearchBar />
+      </div>
     </header>
     
     <main>
@@ -104,5 +115,26 @@ h1 {
   text-align: center;
   padding: 2rem;
   color: #666;
+}
+
+.header-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.clear-favorites-btn {
+  padding: 8px 16px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.clear-favorites-btn:hover {
+  background-color: #ff6666;
 }
 </style>
